@@ -4,6 +4,11 @@
     "rickydo.bit-intro/button@0.0.1": {
         "files": [
             {
+                "relativePath": "specs/components/Button.spec.js",
+                "test": true,
+                "name": "Button.spec.js"
+            },
+            {
                 "relativePath": "src/components/Button/Button.css",
                 "test": false,
                 "name": "Button.css"
@@ -20,7 +25,6 @@
             }
         ],
         "mainFile": "src/components/Button/index.js",
-        "trackDir": "src/components/Button",
         "origin": "AUTHORED",
         "exported": true
     },
