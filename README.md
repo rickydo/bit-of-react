@@ -1,1 +1,5 @@
-Create React App with intro into Bits
+Simple react app used to test some components/npm packages
+
+# HOW TO USE:
+- npm install
+- npm start
