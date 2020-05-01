@@ -41,7 +41,7 @@ function App() {
 
   // test stringutils
   const capStr = 'capitalize me captain!';
-  console.log(capitalize(capStr, ' '));
+  Log.color(capitalize(capStr, ' '), 'navy');
 
 
   return (
