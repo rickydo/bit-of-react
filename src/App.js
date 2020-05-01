@@ -7,28 +7,43 @@ import DisplayDateTime from '@fw/displaydatetime';
 import DisplayEmail from '@fw/displayemail';
 import DisplayPhoneNumber from '@fw/displayphonenumber';
 import { getHash, setHash } from '@fw/hash';
-import { getStateModel } from '@fw/models';
-import { clearCookies } from '@fw/session';
+import { getModuleModel, getStateModel } from '@fw/models';
+// import { clearCookies } from '@fw/session';
 import getUrlVars from '@fw/geturlsvars';
 import DynamicViewLink from '@fw/dynamicviewlink';
+import StateChange from '@fw/statechange';
+import { capitalize } from '@fw/stringutils';
+
 function App() {
-  Log.error('HELLO!!!!!!!!!!!!!!!');
+  Log.trace('App is running...');
   const obj = {
     filter: ['hello', 'filter'],
     sort: ['hello', 'sort']
   }
   console.log('URL Vars are = ', getUrlVars());
   localStorage.setItem(`current_app_model`, strModel);
-  console.log('statemodel = ', getStateModel('Tech','Support'));
+  const module = 'Tech';
+  console.log('statemodel = ', getStateModel(module,'Support'));
   console.log('Fom storage = ', JSON.parse(localStorage.getItem(`current_app_model`)));
   const hash = getHash(obj);
   console.log('my hash=', hash);
   setHash(obj.filter, obj.sort);
   console.log('my log color', process.env.LOG_COLOR);
-  // const model = getStateModel('user', 'edit');
   // console.log("my model=", model);
-  clearCookies();
-  console.log('cleared my cookies!')
+  
+  
+  // clearCookies();
+  // console.log('cleared my cookies!')
+  
+  // test statemodel
+  const model = getModuleModel(module);
+  console.log('my model=', model)
+
+  // test stringutils
+  const capStr = 'capitalize me captain!';
+  console.log(capitalize(capStr, ' '));
+
+
   return (
     <div className="App">
       <header className="App-header">
@@ -38,21 +53,21 @@ function App() {
         {DisplayEmail("ricky.do@dps.texas.gov")}
         {DisplayPhoneNumber("1112223333")}
         <DynamicViewLink content="Link to Technical" mod="Technical" id="23" />
+
         <p>
-          Edit <code>src/App.js</code> and save to reload...
+          StateChange
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-          >
-          Learn React
-        </a>
+
+        {/* <StateChange history={{}} model={model} module={module} original={original} stateColumn={stateColumn} /> */}
       </header>
     </div>
   );
 }
+
+// original
+  // cellProps.original
+
+// statecolumn
 
 const strModel = `{
 	"model": {
@@ -87,7 +102,8 @@ const strModel = `{
 				"states": {
           "Support": 1,
           "view": {
-            "something": "else"
+            "something": "else",
+            "stateColumn": "database_column_name"
           }
 				}
 			}
